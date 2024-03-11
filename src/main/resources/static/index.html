@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>User Management Application</h1>
+    <h2>Create user</h2>
+    <form id="form" action="/user" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="input-control">
+            <label>First name:</label><br>
+            <input type="text" name="firstName"><br>
+        </div>
+        <div class="input-control">
+            <label>Last name:</label><br>
+            <input type="text" name="lastName"><br>
+        </div>
+        <div class="input-control">
+            <label>Date of Birth:</label><br>
+            <input type="date" name="dateOfBirth"><br>
+        </div>
+        <div class="input-control">
+            <label>Phone number:</label><br>
+            <input type="number" name="phoneNumber"><br>
+        </div>
+        <div class="input-control">
+            <label>Email Address:</label><br>
+            <input type="email" name="emailAddress"><br>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Display user by ID</h2>
+    <label for="userId">Enter User ID:</label>
+    <input type="text" id="userId" name="userId">
+    <button id="displayUserByIdBtn">Display User by ID</button>
+    <div id="displayedUser"></div>
+
+    <h2>Display all users</h2>
+    <button id="displayUsersBtn">Display Users</button>
+    <div id="userList"></div>
+
+    <h2>Delete a user</h2>
+    <label for="userId">Enter User ID:</label>
+    <input type="text" id="deleteUserId" name="userId">
+    <button id="deleteUserBtn">Delete User</button>
+</body>
+<script src="script.js"></script>
+</html>

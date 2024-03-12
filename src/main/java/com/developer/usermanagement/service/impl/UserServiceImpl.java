@@ -3,6 +3,7 @@ package com.developer.usermanagement.service.impl;
 import com.developer.usermanagement.entity.UserEntity;
 import com.developer.usermanagement.repository.UserRepository;
 import com.developer.usermanagement.service.UserService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserEntity> findAllUsers() {
-        return userRepository.findAll();
-    }
+        // Sort by last name and then by date
+        Sort sort = Sort.by(Sort.Order.asc("lastName").ignoreCase(), Sort.Order.asc("dateOfBirth"));
 
+        return userRepository.findAll(sort);
+    }
     @Override
     public Optional<UserEntity> findById(Long id) {
         return userRepository.findById(id);

@@ -1,7 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('displayUserByIdBtn').addEventListener('click', function() {
         var userId = document.getElementById('userId').value;
-        displayUserById(userId);
+        fetch('/user/' + userId)
+            .then(response => response.json())
+            .then(user => {
+                var displayedUserHtml = '<h3>User Details</h3>';
+                displayedUserHtml += '<p>ID: ' + user.id + '</p>';
+                displayedUserHtml += '<p>First Name: ' + user.firstName + '</p>';
+                displayedUserHtml += '<p>Last Name: ' + user.lastName + '</p>';
+                // Add more fields as needed
+                document.getElementById('displayedUser').innerHTML = displayedUserHtml;
+            })
+            .catch(error => console.error('Error fetching user details:', error));
     });
 
     document.getElementById('displayUsersBtn').addEventListener('click', function() {
@@ -38,17 +48,3 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error:', error));
     });
 });
-
-function displayUserById(userId) {
-    fetch('/user/' + userId)
-        .then(response => response.json())
-        .then(user => {
-            var displayedUserHtml = '<h3>User Details</h3>';
-            displayedUserHtml += '<p>ID: ' + user.id + '</p>';
-            displayedUserHtml += '<p>First Name: ' + user.firstName + '</p>';
-            displayedUserHtml += '<p>Last Name: ' + user.lastName + '</p>';
-            // Add more fields as needed
-            document.getElementById('displayedUser').innerHTML = displayedUserHtml;
-        })
-        .catch(error => console.error('Error fetching user details:', error));
-}
